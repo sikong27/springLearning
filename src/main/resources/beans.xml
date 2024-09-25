@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 <!--    spring通过class全路径，反射创建对象-->
-<!--    id是spring容器中beanDefinitionMap的k-->
+<!--    id是spring容器中beanDefinitionMap的k, 如果没指定id则给的是全类名#id-->
     <bean class="org.bean.Monster" id="monster01">
         <property name="monsterID" value="100"/>
         <property name="name" value="牛魔王"/>
@@ -11,6 +11,12 @@
     </bean>
 
     <bean class="org.bean.Monster" id="monster02">
+        <property name="monsterID" value="100"/>
+        <property name="name" value="牛魔王"/>
+        <property name="skill" value="飞天"/>
+    </bean>
+
+    <bean class="org.bean.Monster">
         <property name="monsterID" value="100"/>
         <property name="name" value="牛魔王"/>
         <property name="skill" value="飞天"/>
