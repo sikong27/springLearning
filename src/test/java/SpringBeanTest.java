@@ -10,6 +10,7 @@ public class SpringBeanTest {
         Object monster01 = ioc.getBean("monster01");
         Monster monster = (Monster) monster01;
         System.out.println(monster);
-
+        Monster monster1 = ioc.getBean("monster01", Monster.class);
+        System.out.println(monster1);
     }
 }
