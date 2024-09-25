@@ -1,3 +1,4 @@
+import org.annotation.BeginController;
 import org.bean.Monster;
 import org.junit.jupiter.api.Test;
 import org.service.MemberServiceImpl;
@@ -56,5 +57,16 @@ public class SpringBeanTest {
     public void beanPostProcessor() {
         ApplicationContext ioc = new ClassPathXmlApplicationContext("beans01.xml");
         ioc.getBean("monster01", Monster.class);
+    }
+
+    @Test
+    public void annotationBeanTest() {
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("annotationbeans.xml");
+        //默认id为类名首字母小写
+        BeginController beginController = ioc.getBean("beginController", BeginController.class);
+        BeginController beginController1 = ioc.getBean(BeginController.class);
+        System.out.println(beginController);
+        System.out.println(beginController1);
+
     }
 }
