@@ -5,6 +5,18 @@ public class Monster {
     private String name;
     private String skill;
 
+    private void init() {
+        System.out.println("Monster init...");
+    }
+
+    private void destroy() {
+        System.out.println("Monster destroy...");
+    }
+
+
+    /**
+     * 必须给无参构造，context底层使用无参构造函数，通过反射创建对象
+     */
     public Monster() {
     }
 
@@ -18,6 +30,11 @@ public class Monster {
         return monsterID;
     }
 
+
+    /**
+     * xml方式配置bean必须给set方法，底层通过set完成赋值
+     * @param monsterID
+     */
     public void setMonsterID(Integer monsterID) {
         this.monsterID = monsterID;
     }
