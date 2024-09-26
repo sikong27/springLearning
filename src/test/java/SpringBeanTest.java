@@ -9,9 +9,10 @@ import java.io.File;
 
 public class SpringBeanTest {
 
-    ApplicationContext ioc = new ClassPathXmlApplicationContext("beans.xml");
+
     @Test
     public void getMonsterByID() {
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("beans.xml");
         // ioc里面有个beanFactory, 里面的beanDefinitionMap（ConcurrentHashMap）存放着配置中定义的类信息
         // beanFactory里还有个singletonObjects（ConcurrentHashMap）存放单例实例对象
         // getBean，先拿ID去beanDefinitionMap查，如果是单例直接去singletonObjects获取，否则创建一个新的返回
@@ -37,18 +38,21 @@ public class SpringBeanTest {
      */
     @Test
     public void getMonsterByType() {
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("beans.xml");
         Monster monster = ioc.getBean(Monster.class);
         System.out.println(monster);
     }
 
     @Test
     public void setBeanByRef() {
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("beans.xml");
         MemberServiceImpl memberService = ioc.getBean("memberService", MemberServiceImpl.class);
         memberService.add();
     }
 
     @Test
     public void getBeanByFactoryBean() {
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("beans.xml");
         Monster monster = ioc.getBean("monster06", Monster.class);
         System.out.println(monster);
     }
@@ -64,9 +68,6 @@ public class SpringBeanTest {
         ApplicationContext ioc = new ClassPathXmlApplicationContext("annotationbeans.xml");
         //默认id为类名首字母小写
         BeginController beginController = ioc.getBean("beginController", BeginController.class);
-        BeginController beginController1 = ioc.getBean(BeginController.class);
-        System.out.println(beginController);
-        System.out.println(beginController1);
-
+        beginController.sayOK();
     }
 }
