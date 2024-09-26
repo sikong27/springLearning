@@ -15,7 +15,7 @@
     </properties>
 
     <dependencies>
-<!--        spring的核心包-->
+        <!--        spring的核心包-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
@@ -47,17 +47,29 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
-<!--        解析xml-->
+        <!--        解析xml-->
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>1.1</version>
         </dependency>
-<!--        注解需要-->
+        <!--        注解需要-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
             <version>5.3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--        aop切面编程需要-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.6</version>
         </dependency>
     </dependencies>
 
