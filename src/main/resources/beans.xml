@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 <!--    spring通过class全路径，反射创建对象-->
 <!--    id是spring容器中beanDefinitionMap的k, 如果没指定id则给的是全类名#id-->
-    <bean class="org.bean.Monster" id="monster01">
+    <bean class="org.bean.Monster">
 <!--        底层通过set方法完成-->
         <property name="monsterID" value="100"/>
         <property name="name" value="牛魔王"/>
