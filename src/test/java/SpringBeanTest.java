@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.File;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SpringBeanTest {
 
@@ -69,5 +70,11 @@ public class SpringBeanTest {
         //默认id为类名首字母小写
         BeginController beginController = ioc.getBean("beginController", BeginController.class);
         beginController.sayOK();
+    }
+
+    @Test
+    public void myTest() {
+        ConcurrentHashMap<Object, Object> map = new ConcurrentHashMap<>();
+        map.get(null);
     }
 }
