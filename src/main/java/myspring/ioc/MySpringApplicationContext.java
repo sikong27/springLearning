@@ -40,6 +40,17 @@ public class MySpringApplicationContext {
      */
     public MySpringApplicationContext(Class<?> configClass) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         beanDefinitionsScan(configClass);
+        initSingletonObjects();
+    }
+
+    private void initSingletonObjects() {// 4.把单例对象加入到singletonObjects
+        beanDefinitionMap.forEach((beanName, beanDefinition) -> {
+            if (beanDefinition.getScope().equals("singleton") && !beanDefinition.isLazy()) {
+                if (!BeanPostProcessor.class.isAssignableFrom(beanDefinition.getBeanClass())) {
+                    singletonObjects.put(beanName, Objects.requireNonNull(createBean(beanDefinition, beanName)));
+                }
+            }
+        });
     }
 
     private Object createBean(BeanDefinition beanDefinition, String beanName) {
@@ -132,13 +143,7 @@ public class MySpringApplicationContext {
                             beanDefinitionMap.put(beanName, beanDefinition);
                             beanNameMap.put(aClass, beanName);
                             // 3.看当前class是不是后置处理器，是的话直接初始化，就不需要加入单例池了
-                            if (beanPostProcessorProcess(beanName, aClass)) {
-                                continue;
-                            }
-                            // 4.把单例对象加入到singletonObjects
-                            if (beanDefinition.getScope().equals("singleton") && !beanDefinition.isLazy()) {
-                                singletonObjects.put(beanName, Objects.requireNonNull(createBean(beanDefinition, beanName)));
-                            }
+                            beanPostProcessorProcess(beanName, aClass);
                         }
                     }
                 }
@@ -146,13 +151,11 @@ public class MySpringApplicationContext {
         }
     }
 
-    private boolean beanPostProcessorProcess(String beanName, Class <?> aClass) throws InstantiationException, IllegalAccessException {
+    private void beanPostProcessorProcess(String beanName, Class <?> aClass) throws InstantiationException, IllegalAccessException {
         if (BeanPostProcessor.class.isAssignableFrom(aClass)) {
             BeanPostProcessor beanPostProcessor = (BeanPostProcessor) aClass.newInstance();
             beanPostProcessors.add(beanPostProcessor);
-            return true;
         }
-        return false;
     }
 
     private static BeanDefinition getBeanDefinition(Class<?> aClass) {
