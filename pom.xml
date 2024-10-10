@@ -77,6 +77,30 @@
             <artifactId>spring-aspects</artifactId>
             <version>5.3.8</version>
         </dependency>
+        <!--        jdbcTemplate需要-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.9</version>
+        </dependency>
+        <!-- c3p0 连接池 -->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.5</version> <!-- 最新版本可在 Maven 仓库中查看 -->
+        </dependency>
+
+        <!-- c3p0 依赖的 mchange-commons -->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>mchange-commons-java</artifactId>
+            <version>0.2.20</version>
+        </dependency>
     </dependencies>
 
 </project>
